@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.apzda.cloud</groupId>
+    <artifactId>apzda-bom</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- apzda projects -->
+        <apzda.config.version>1.0.5</apzda.config.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.apzda.cloud</groupId>
+                <artifactId>config</artifactId>
+                <version>${apzda.config.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <issueManagement>
+        <system>Github Issue</system>
+        <url>https://github.com/apzda/apzda-bom/issues</url>
+    </issueManagement>
+
+    <ciManagement>
+        <system>Github Actions</system>
+        <url>https://github.com/apzda/apzda-bom/actions</url>
+    </ciManagement>
+
+    <licenses>
+        <license>
+            <name>GPLv3</name>
+            <url>https://www.gnu.org/licenses/gpl-3.0.en.html</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Ning Guangfeng</name>
+            <email>windywany@gmail.com</email>
+            <roles>
+                <role>Maintainer</role>
+            </roles>
+            <timezone>+8</timezone>
+        </developer>
+    </developers>
+
+    <scm>
+        <url>https://github.com/apzda/apzda-bom.git</url>
+        <connection>scm:git@github.com:apzda/apzda-bom.git</connection>
+        <developerConnection>scm:git:git@github.com:apzda/apzda-bom.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+
+        <site>
+            <id>apzda-bom</id>
+            <name>Apzda Project's Bom</name>
+            <url>https://docs.apzda.com/apzda-bom</url>
+        </site>
+    </distributionManagement>
+</project>
