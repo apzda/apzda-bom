@@ -11,6 +11,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
         <!-- apzda projects -->
         <apzda.config.version>1.0.5</apzda.config.version>
     </properties>
@@ -78,4 +79,125 @@
             <url>https://docs.apzda.com/apzda-bom</url>
         </site>
     </distributionManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <!-- maven-release-plugin -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>3.0.0</version>
+                    <configuration>
+                        <preparationGoals>clean verify</preparationGoals>
+                        <autoVersionSubmodules>true</autoVersionSubmodules>
+                        <tagNameFormat>v@{project.version}</tagNameFormat>
+                        <generateReleasePoms>false</generateReleasePoms>
+                        <arguments>-Dmaven.site.skip=true</arguments>
+                    </configuration>
+                </plugin>
+                <!-- maven-javadoc-plugin -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>3.6.3</version>
+                    <configuration>
+                        <defaultAuthor>lazybones</defaultAuthor>
+                        <charset>${project.build.sourceEncoding}</charset>
+                        <additionalJOption>-Xdoclint:none</additionalJOption>
+                        <additionalOptions>
+                            <option>-Xmaxwarns 3</option>
+                            <option>-Xmaxerrs 3</option>
+                        </additionalOptions>
+                        <quiet>true</quiet>
+                        <nohelp>true</nohelp>
+                        <tags>
+                            <tag>
+                                <name>Version</name>
+                                <placement>a</placement>
+                                <head>版本:</head>
+                            </tag>
+                            <tag>
+                                <name>Author</name>
+                                <placement>a</placement>
+                                <head>作者:</head>
+                            </tag>
+                            <tag>
+                                <name>Description</name>
+                                <placement>a</placement>
+                                <head>功能描述:</head>
+                            </tag>
+                            <tag>
+                                <name>description</name>
+                                <placement>a</placement>
+                                <head>功能描述:</head>
+                            </tag>
+                            <tag>
+                                <name>Date</name>
+                                <placement>a</placement>
+                                <head>文件创建日期:</head>
+                            </tag>
+                            <tag>
+                                <name>date</name>
+                                <placement>a</placement>
+                                <head>文件创建日期:</head>
+                            </tag>
+                        </tags>
+                    </configuration>
+                </plugin>
+                <!-- maven-project-info-reports-plugin -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-project-info-reports-plugin</artifactId>
+                    <version>3.5.0</version>
+                </plugin>
+                <!-- maven-gpg-plugin -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-gpg-plugin</artifactId>
+                    <version>${maven-gpg-plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <id>sign-artifacts</id>
+                            <phase>verify</phase>
+                            <goals>
+                                <goal>sign</goal>
+                            </goals>
+                            <configuration>
+                                <gpgArguments>
+                                    <argument>--pinentry-mode</argument>
+                                    <argument>loopback</argument>
+                                </gpgArguments>
+                                <passphraseServerId>gpg</passphraseServerId>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>javadoc-jar</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>
