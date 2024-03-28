@@ -14,6 +14,10 @@
         <maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
         <!-- apzda projects -->
         <apzda.config.version>1.0.5</apzda.config.version>
+        <apzda.oss.version>1.0.5</apzda.oss.version>
+        <apzda.captcha.version>1.0.3</apzda.captcha.version>
+        <apzda.sms.version>1.0.3</apzda.sms.version>
+        <apzda.audit.version>1.0.0</apzda.audit.version>
     </properties>
 
     <dependencyManagement>
@@ -24,6 +28,34 @@
                 <version>${apzda.config.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <artifactId>oss</artifactId>
+                <groupId>com.apzda.cloud</groupId>
+                <type>pom</type>
+                <scope>import</scope>
+                <version>${apzda.oss.version}</version>
+            </dependency>
+            <dependency>
+                <artifactId>captcha</artifactId>
+                <groupId>com.apzda.cloud</groupId>
+                <type>pom</type>
+                <scope>import</scope>
+                <version>${apzda.captcha.version}</version>
+            </dependency>
+            <dependency>
+                <artifactId>sms</artifactId>
+                <groupId>com.apzda.cloud</groupId>
+                <type>pom</type>
+                <scope>import</scope>
+                <version>${apzda.sms.version}</version>
+            </dependency>
+            <dependency>
+                <artifactId>audit</artifactId>
+                <groupId>com.apzda.cloud</groupId>
+                <type>pom</type>
+                <scope>import</scope>
+                <version>${apzda.audit.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -68,10 +100,6 @@
             <id>ossrh</id>
             <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
-        <repository>
-            <id>ossrh</id>
-            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
 
         <site>
             <id>apzda-bom</id>
@@ -95,6 +123,20 @@
                         <generateReleasePoms>false</generateReleasePoms>
                         <arguments>-Dmaven.site.skip=true</arguments>
                     </configuration>
+                </plugin>
+                <!-- maven-source-plugin -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>3.2.1</version>
+                    <executions>
+                        <execution>
+                            <id>attach-sources</id>
+                            <goals>
+                                <goal>jar-no-fork</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                 </plugin>
                 <!-- maven-javadoc-plugin -->
                 <plugin>
@@ -173,31 +215,54 @@
                         </execution>
                     </executions>
                 </plugin>
+                <!-- nexus-staging-maven-plugin -->
+                <plugin>
+                    <groupId>org.sonatype.plugins</groupId>
+                    <artifactId>nexus-staging-maven-plugin</artifactId>
+                    <version>1.6.7</version>
+                    <extensions>true</extensions>
+                    <configuration>
+                        <serverId>ossrh</serverId>
+                        <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+                        <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                    </configuration>
+                </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-release-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>javadoc-jar</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-gpg-plugin</artifactId>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
             </plugin>
         </plugins>
     </build>
 
+    <profiles>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-release-plugin</artifactId>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
