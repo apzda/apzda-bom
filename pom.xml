@@ -20,11 +20,15 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
         <!-- apzda projects -->
-        <apzda.config.version>1.0.5</apzda.config.version>
-        <apzda.oss.version>1.0.5</apzda.oss.version>
-        <apzda.captcha.version>1.0.3</apzda.captcha.version>
-        <apzda.sms.version>1.0.3</apzda.sms.version>
-        <apzda.audit.version>1.0.0</apzda.audit.version>
+        <apzda.config.version>1.0.6</apzda.config.version>
+        <apzda.oss.version>1.0.6</apzda.oss.version>
+        <apzda.captcha.version>1.0.4</apzda.captcha.version>
+        <apzda.sms.version>1.0.4</apzda.sms.version>
+        <apzda.audit.version>1.0.1</apzda.audit.version>
+        <!--
+        <apzda.wallet.version>1.0.0-SNAPSHOT</apzda.wallet.version>
+        <apzda.uc.version>1.0.0-SNAPSHOT</apzda.uc.version>
+        -->
     </properties>
 
     <dependencyManagement>
@@ -64,6 +68,22 @@
                 <scope>import</scope>
                 <version>${apzda.audit.version}</version>
             </dependency>
+            <!--
+            <dependency>
+                <artifactId>wallet</artifactId>
+                <groupId>com.apzda.cloud</groupId>
+                <type>pom</type>
+                <scope>import</scope>
+                <version>${apzda.wallet.version}</version>
+            </dependency>
+            <dependency>
+                <artifactId>uc</artifactId>
+                <groupId>com.apzda.cloud</groupId>
+                <type>pom</type>
+                <scope>import</scope>
+                <version>${apzda.uc.version}</version>
+            </dependency>
+            -->
         </dependencies>
     </dependencyManagement>
 
