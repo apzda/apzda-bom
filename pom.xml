@@ -4,7 +4,7 @@
 
     <groupId>com.apzda.cloud</groupId>
     <artifactId>apzda-bom</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Apzda Bom</name>
     <description>
@@ -118,7 +118,7 @@
         <url>https://github.com/apzda/apzda-bom.git</url>
         <connection>scm:git@github.com:apzda/apzda-bom.git</connection>
         <developerConnection>scm:git:git@github.com:apzda/apzda-bom.git</developerConnection>
-        <tag>v1.0.2</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <distributionManagement>
