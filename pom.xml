@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.apzda.cloud</groupId>
@@ -17,13 +18,13 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <maven.compiler.release>${java.version}</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
+        <maven-gpg-plugin.version>3.2.3</maven-gpg-plugin.version>
         <!-- apzda projects -->
-        <apzda.config.version>1.0.6</apzda.config.version>
-        <apzda.oss.version>1.0.6</apzda.oss.version>
-        <apzda.captcha.version>1.0.4</apzda.captcha.version>
-        <apzda.sms.version>1.0.4</apzda.sms.version>
-        <apzda.audit.version>1.0.1</apzda.audit.version>
+        <apzda.config.version>1.0.9</apzda.config.version>
+        <apzda.oss.version>1.0.7</apzda.oss.version>
+        <apzda.captcha.version>1.0.5</apzda.captcha.version>
+        <apzda.sms.version>1.0.6</apzda.sms.version>
+        <apzda.audit.version>1.0.3</apzda.audit.version>
         <!--
         <apzda.wallet.version>1.0.0-SNAPSHOT</apzda.wallet.version>
         <apzda.uc.version>1.0.0-SNAPSHOT</apzda.uc.version>
@@ -147,10 +148,9 @@
                         <autoVersionSubmodules>true</autoVersionSubmodules>
                         <tagNameFormat>v@{project.version}</tagNameFormat>
                         <generateReleasePoms>false</generateReleasePoms>
-                        <useReleaseProfile>false</useReleaseProfile>
                         <releaseProfiles>release</releaseProfiles>
                         <arguments>-Dmaven.site.skip=true</arguments>
-                        <goals>deploy</goals>
+                        <goals>install</goals>
                     </configuration>
                 </plugin>
                 <!-- maven-source-plugin -->
@@ -236,10 +236,11 @@
                             </goals>
                             <configuration>
                                 <gpgArguments>
-                                    <argument>--pinentry-mode</argument>
-                                    <argument>loopback</argument>
+                                    <arg>--pinentry-mode</arg>
+                                    <arg>loopback</arg>
+                                    <arg>--no-tty</arg>
                                 </gpgArguments>
-                                <passphraseServerId>gpg</passphraseServerId>
+                                <passphraseEnvName>GPG_SECURITY_PWD</passphraseEnvName>
                             </configuration>
                         </execution>
                     </executions>
@@ -260,8 +261,8 @@
         </pluginManagement>
         <plugins>
             <plugin>
-                <groupId>org.sonatype.plugins</groupId>
-                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
             </plugin>
         </plugins>
     </build>
@@ -273,9 +274,15 @@
                 <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-source-plugin</artifactId>
+                        <artifactId>maven-release-plugin</artifactId>
                     </plugin>
-
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>deploy</id>
+            <build>
+                <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
@@ -283,12 +290,12 @@
 
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-release-plugin</artifactId>
+                        <artifactId>maven-gpg-plugin</artifactId>
                     </plugin>
 
                     <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-gpg-plugin</artifactId>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
                     </plugin>
                 </plugins>
             </build>
