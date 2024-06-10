@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.apzda.cloud</groupId>
@@ -19,11 +20,11 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven-gpg-plugin.version>3.2.3</maven-gpg-plugin.version>
         <!-- apzda projects -->
-        <apzda.config.version>1.0.9</apzda.config.version>
-        <apzda.oss.version>1.0.7</apzda.oss.version>
-        <apzda.captcha.version>1.0.5</apzda.captcha.version>
-        <apzda.sms.version>1.0.6</apzda.sms.version>
-        <apzda.audit.version>1.0.3</apzda.audit.version>
+        <apzda.config.version>1.0.10-SNAPSHOT</apzda.config.version>
+        <apzda.oss.version>1.0.8-SNAPSHOT</apzda.oss.version>
+        <apzda.captcha.version>1.0.6-SNAPSHOT</apzda.captcha.version>
+        <apzda.sms.version>1.0.7-SNAPSHOT</apzda.sms.version>
+        <apzda.audit.version>1.0.4-SNAPSHOT</apzda.audit.version>
         <!--
         <apzda.wallet.version>1.0.0-SNAPSHOT</apzda.wallet.version>
         <apzda.uc.version>1.0.0-SNAPSHOT</apzda.uc.version>
