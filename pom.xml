@@ -76,7 +76,6 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!--
             <dependency>
                 <artifactId>uc</artifactId>
                 <groupId>com.apzda.cloud</groupId>
@@ -84,7 +83,6 @@
                 <scope>import</scope>
                 <version>${apzda.uc.version}</version>
             </dependency>
-            -->
             <!--
             <dependency>
                 <artifactId>wallet</artifactId>
