@@ -42,5 +42,7 @@ jobs:
               "username": "${{ secrets.OSSRH_USERNAME }}",
               "password": "${{ secrets.OSSRH_TOKEN }}"
             }]
+      - name: 'Remove suffix: SNAPSHOT'
+        run: sed -i "s/-SNAPSHOT//i" pom.xml
       - name: Deploy to OSSRH
         run: mvn -P+deploy -Djava.version=17 -DskipTests=true clean deploy
