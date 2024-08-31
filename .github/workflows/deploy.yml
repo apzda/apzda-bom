@@ -1,12 +1,6 @@
 name: Deploy To OSSRH SNAPSHOT
 
 on:
-  pull_request:
-    branches:
-      - main
-  push:
-    branches:
-      - main
   workflow_dispatch:
 
 concurrency:
